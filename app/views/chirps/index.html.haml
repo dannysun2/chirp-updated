@@ -1,0 +1,95 @@
+.row
+  .col-md-3
+    .ui-329
+      .item
+        .head.clearfix
+          %img.img-responsive{:alt => "", :src => "img/ui-329/1.jpg"}/
+          %h2
+            %a{:href => "#"} Jhon Deo
+            %span UI/UX Designer
+        .content
+          %ul.list-unstyled
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-phone.bg-red
+                +39 - 384 - 493 - 3828
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-envelope.bg-green
+                janedoe@gmail.com
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-twitter.bg-lblue
+                @janedoe
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-facebook.bg-blue
+                facebook.com/janedeo
+
+
+  .col-md-6
+    / UI 46 Starts
+    .ui-246
+      / Heading Starts
+      .ui-heading
+        .ui-image
+          / Image
+          %a{:href => "#"}
+            %img.img-responsive{:alt => "#", :src => "img/ui-246/5.jpg"}/
+          / Name
+          %h4
+            %a{:href => "#"}
+              James Deo
+              %span @james
+        .ui-date
+          / Date and Time
+          11 Oct 2014
+      .clearfix
+      / Heading Ends
+      / Content Starts
+      .ui-content
+        You asked, Font Awesome delivers with 58 shiny new icons in version 3.2. Want to request new icons? Here's how. Need vectors or want to use on the desktop?
+      / Content Ends
+      %hr/
+      / Footer Starts
+      .ui-footer.clearfix
+        / Twitter Icons
+        .twitter-icon
+          %a.btn-twitter{:href => "#"}
+            %i.fa.fa-twitter.lblue>
+             Follow
+        / Icons
+        .icons
+          %a{:href => "#"}
+            %i.fa.fa-reply.icon-color
+          %a{:href => "#"}
+            %i.fa.fa-retweet.icon-color
+          %a{:href => "#"}
+            %i.fa.fa-star.icon-color
+    .ui-89
+      .ui-social
+        .tab-content
+          #facebook.tab-pane.active
+            %textarea.form-control{:placeholder => "Chirp Chirp", :rows => "4"}
+            %button.btn-sm.btn.btn-red{:type => "submit"} Submit
+            %button.btn-sm.btn.btn-white{:type => "reset"} Reset
+    = paginate @timeline
+
+  .col-md-3
+    .ui-x
+      / Main Heading
+      %h2
+        %a{:href => "#"} Following
+      - current_user.all_following.each do |user|
+        %a.ui-item.clearfix{:href => "#"}
+          %i.fa.fa-joomla
+          %span.ui-details
+            %span= user.email
+            -# %span= link_to "Unfollow", stop_following_path(user_id: user.id), method: :post
+
+%ul.list-unstyled
+  - @users.reject{|u| u.id == current_user.id}.sample(5).each do |user|
+    - unless current_user.following?(user)
+      %li
+        = user.email
+        = link_to "Follow", start_following_path(user_id: user.id), method: :post, class: "btn btn-default btn-xs"
