@@ -29,6 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'dotenv-rails'
 gem 'devise'
 gem "haml-rails", "~> 0.9"
 gem 'bootstrap-sass'
